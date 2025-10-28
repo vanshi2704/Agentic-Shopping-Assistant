@@ -1,7 +1,6 @@
-playwright
-beautifulsoup4
-google-generativeai
-Pillow
-flask
+Flask
 twilio
 requests
+pillow
+google-generative
+playwright
