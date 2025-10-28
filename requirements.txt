@@ -2,5 +2,5 @@ Flask
 twilio
 requests
 pillow
-google-generative
+google-generativeai
 playwright
