@@ -7,19 +7,20 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    # This line is the main fix. It runs the entire job inside
+    # a container that already has the Railway CLI installed.
+    container: ghcr.io/railwayapp/cli:latest
+    
+    # Environment variables are now at the job level
+    env:
+      RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+      
     steps:
+      # Step 1: Check out your repository code
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # This pipeline doesn't need to build or test, as Railway
-      # will handle the Docker build automatically from the Dockerfile.
-      # We just need to trigger the deployment.
-
+      # Step 2: Run the Railway deployment command
+      # The 'railway' command is available because we are in the container
       - name: Deploy to Railway
-        uses: railwayapp/cli-action@v1.0.4
-        with:
-          # This command tells Railway to deploy the latest commit
-          command: railway up
-        env:
-          # This securely uses the token you will create in the next steps
-          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+        run: railway up
