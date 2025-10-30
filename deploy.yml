@@ -1,0 +1,25 @@
+name: Deploy to Railway
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # This pipeline doesn't need to build or test, as Railway
+      # will handle the Docker build automatically from the Dockerfile.
+      # We just need to trigger the deployment.
+
+      - name: Deploy to Railway
+        uses: railwayapp/cli-action@v1.0.4
+        with:
+          # This command tells Railway to deploy the latest commit
+          command: railway up
+        env:
+          # This securely uses the token you will create in the next steps
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
