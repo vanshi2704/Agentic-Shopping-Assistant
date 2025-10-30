@@ -7,20 +7,17 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    # This line is the main fix. It runs the entire job inside
-    # a container that already has the Railway CLI installed.
+    # This line runs the job inside a container with the Railway CLI
     container: ghcr.io/railwayapp/cli:latest
     
-    # Environment variables are now at the job level
     env:
+      # This makes the secret available to the whole job
       RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
       
     steps:
-      # Step 1: Check out your repository code
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Step 2: Run the Railway deployment command
-      # The 'railway' command is available because we are in the container
       - name: Deploy to Railway
+        # This command is now available because of the container
         run: railway up
