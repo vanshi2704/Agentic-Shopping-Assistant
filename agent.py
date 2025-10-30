@@ -7,7 +7,7 @@ from io import BytesIO
 import google.generativeai as genai
 from typing import List, Dict
 import re # Import the regular expressions library
-
+# Triggering deployment
 # This function remains the same
 def run_scraper_with_input(script_name: str, search_query: str):
     print(f"\n{'='*20}\n[INFO] Running scraper: {script_name} for '{search_query}'\n{'='*20}")
@@ -219,4 +219,5 @@ def main():
             print(f"   - URL: {url}")
 
 if __name__ == "__main__":
+
     main()
