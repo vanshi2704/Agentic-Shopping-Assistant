@@ -29,7 +29,7 @@ get_expert_recommendation = agent.get_expert_recommendation
 ACCOUNT_SID = os.getenv("ACCOUNT_SID", "YOUR_TWILIO_ACCOUNT_SID")
 AUTH_TOKEN = os.getenv("AUTH_TOKEN", "YOUR_TWILIO_AUTH_TOKEN")
 WHATSAPP_NUMBER = "whatsapp:+14155238886"  # Twilio Sandbox
-GEMINI_API_KEY = "AIzaSyA6GoBeROA-qIGZ7By0E0DVp4uA2S0FNIc"  # Your existing key
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")  # Your existing key
 
 app = Flask(__name__)
 client = Client(ACCOUNT_SID, AUTH_TOKEN)
@@ -193,3 +193,4 @@ def whatsapp_webhook():
 # ------------------------------------------------------------------
 if __name__ == "__main__":
     app.run(port=5000, debug=False, use_reloader=False)
+
