@@ -165,7 +165,16 @@ def process_visual_search(to_number, query, image_path):
 def whatsapp_webhook():
     from_number = request.values.get("From", "").strip()
     incoming_msg = request.values.get("Body", "").strip()
-    num_media = int(request.values.get("NumMedia", 0))
+
+    # --- START of the fix ---
+    try:
+        # Try to convert the NumMedia value to an integer.
+        num_media = int(request.values.get("NumMedia", 0))
+    except (ValueError, TypeError):
+        # If it fails (e.g., it's not a number or is None),
+        # log it and default to 0 so the app doesn't crash.
+        print("[WARNING] Received a request with an invalid 'NumMedia' value. Defaulting to 0.")
+        num_media = 0
 
     print(f"📩 Incoming message from {from_number}: '{incoming_msg}' | Media: {num_media}")
 
@@ -193,5 +202,6 @@ def whatsapp_webhook():
 # ------------------------------------------------------------------
 if __name__ == "__main__":
     app.run(port=5000, debug=False, use_reloader=False)
+
 
 
