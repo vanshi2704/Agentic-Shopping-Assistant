@@ -21,10 +21,11 @@ COPY . .
 
 # Step 6: Expose the port your app will run on.
 # Railway automatically provides a PORT environment variable.
-EXPOSE 8000
+EXPOSE 5000
 
 # Step 7: The command to run your application when the container starts.
 # We use gunicorn to run the 'app' object from the 'whatsapp_bot' module.
 # We bind to 0.0.0.0 to make it accessible from outside the container.
 # The ${PORT:-8000} syntax uses the PORT variable from Railway, or defaults to 8000.
+
 CMD ["gunicorn", "--bind", "0.0.0.0:${PORT:-8000}", "whatsapp_bot:app"]
