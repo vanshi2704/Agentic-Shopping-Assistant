@@ -5,3 +5,4 @@ pillow
 google-generativeai
 playwright
 gunicorn
+beautifulsoup4
