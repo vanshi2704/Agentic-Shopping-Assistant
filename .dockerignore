@@ -1,0 +1,28 @@
+# .dockerignore
+
+# Git files
+.git
+.gitignore
+
+# Docker files
+Dockerfile
+.dockerignore
+
+# Python virtual environment and cache
+venv
+__pycache__/
+*.pyc
+
+# IDE and OS files
+.vscode/
+.idea/
+.DS_Store
+
+# Scraper output files (should not be in the image)
+*.json
+
+# Local downloads from WhatsApp bot
+downloads/
+
+# Documentation
+README.md
