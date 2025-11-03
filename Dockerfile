@@ -39,6 +39,7 @@ EXPOSE 8000
 
 # Step 8: The command to run your application
 # The shell form is used so the ${PORT} environment variable is correctly substituted by the shell.
-CMD ["gunicorn", "--bind", "whatsapp_bot:app"]
+CMD ["gunicorn", "--bind", "0.0.0.0:${PORT:-8000}", "whatsapp_bot:app"]
+
 
 
