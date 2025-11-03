@@ -1,71 +1,24 @@
-# Git
+# .dockerignore
+
+# Git history and configuration
 .git
 .gitignore
-.gitattributes
 
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-
-# Virtual Environment
-.env
-.venv
-env/
-venv/
-ENV/
-
-# IDE
-.idea/
-.vscode/
-*.swp
-*.swo
-
-# Project specific
-*.log
-tmp/
-.coverage
-htmlcov/
-.pytest_cache/
-tests/
-docs/
-README.md
-CHANGELOG.md
-LICENSE
-
-# Docker
+# Docker configuration files
 Dockerfile
 .dockerignore
-docker-compose*.yml
 
-# Railway
-.railway/
-railway.json
-railway.toml
-deploy.yaml
+# Local secrets file - MUST NOT be in the image
+.env
 
-# Local development
-*.env.local
-.env.*.local
-node_modules/
+# Python cache
+__pycache__/
+*.pyc
 
-# Browser automation artifacts
-.playwright-screenshots/
-.webkit/
-.firefox/
-.chromium/
+# IDE and OS specific files
+.vscode/
+.idea/
+.DS_Store
+
+# Documentation
+README.md
