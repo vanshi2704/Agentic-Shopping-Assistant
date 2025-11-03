@@ -28,5 +28,6 @@ EXPOSE 5000
 # We bind to 0.0.0.0 to make it accessible from outside the container.
 # The ${PORT:-8000} syntax uses the PORT variable from Railway, or defaults to 8000.
 
-CMD "gunicorn", "--bind", "0.0.0.0:${PORT:-8000}", "whatsapp_bot:app"
+CMD ["gunicorn", "--bind", "0.0.0.0:${PORT:-8000}", "whatsapp_bot:app"]
+
 
