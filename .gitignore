@@ -1,67 +1,24 @@
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
+# .gitignore
 
-# Virtual Environment
+# Environment variables - NEVER commit secrets
 .env
-.venv
-env/
+
+# Python specific
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
 venv/
-ENV/
-env.bak/
-venv.bak/
+env/
+*.egg-info/
 
-# IDE specific files
-.idea/
+# Scraper output files
+*.json
+
+# Local downloads from the WhatsApp bot
+downloads/
+
+# IDE and OS files
 .vscode/
-*.swp
-*.swo
+.idea/
 .DS_Store
-
-# Project specific
-*.log
-tmp/
-.coverage
-htmlcov/
-.pytest_cache/
-.ruff_cache/
-*data.json
-*results.html
-
-# Local development configuration
-*.env
-.env.local
-.env.*.local
-
-# Browser automation
-.playwright-screenshots/
-.webkit/
-.firefox/
-.chromium/
-
-# Railway specific
-.railway/
-railway.json
-railway.toml
-
-# Temporary files
-*.tmp
-.cache/
