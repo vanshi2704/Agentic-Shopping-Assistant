@@ -1,38 +1,26 @@
-name: agentic-shopping-assistant
-services:
-  web:
-    # Build settings
-    buildCommand: docker build -t agentic-shopping-assistant .
-    startCommand: docker run -p $PORT:$PORT agentic-shopping-assistant
-    healthcheckPath: /health
-    healthcheckTimeout: 300
+# .github/workflows/deploy.yml
+
+name: Deploy to Railway
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    # This runs the job inside a container with the Railway CLI pre-installed
+    container: ghcr.io/railwayapp/cli:latest
     
-    # Environment configuration
-    envVars:
-      - key: PYTHONUNBUFFERED
-        value: "1"
-      - key: PORT
-        value: "$PORT"  # Railway will automatically inject this
-    
-    # Resource allocation
-    autoscaling:
-      enabled: true
-      minInstances: 1
-      maxInstances: 3
-      targetMemoryUtilizationPercentage: 80
-      targetCPUUtilizationPercentage: 80
-    
-    # Deployment strategy
-    deploymentStrategy:
-      maxSurge: 25%
-      maxUnavailable: 25%
-    
-    # Volume mounts (if needed)
-    volumes:
-      - path: /app/tmp
-        name: temp-storage
-    
-    # Network configuration
-    ports:
-      - containerPort: ${PORT}
-        protocol: TCP
+    env:
+      # This securely uses the secret you configure in GitHub repository settings
+      RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+      
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Deploy to Railway
+        # This command now specifies which service to deploy to, fixing the "Multiple services found" error.
+        # ** IMPORTANT: Replace '<your-service-name-here>' with your actual service name from the Railway dashboard **
+        run: railway up --service Agentic-Shopping-Assistant
